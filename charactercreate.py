@@ -20,10 +20,11 @@ class CharacterCreatorApp(App):
     def __init__(self, charList, **kwargs):
         super(CharacterCreatorApp, self).__init__(**kwargs)
         self.charList = charList
+        self.layout = BoxLayout(orientation = 'vertical', padding = 100, spacing = 5)
 
     def build(self):
         layout2 = BoxLayout(orientation = 'horizontal', padding = 10, spacing = 10)
-        #layout = BoxLayout(orientation = 'vertical', padding = 100, spacing = 5)
+       
         Window.clearcolor = (.07, .07, .07, 0.092458)
 
         self.list_data = self.charList
@@ -43,7 +44,8 @@ class CharacterCreatorApp(App):
             font_size=18,
             height = 50,
              background_color= (10, 10, 11, 0.043956456256231122546223778933333896594568945618416584561),
-            multiline=False
+            multiline=False,
+            foreground_color = (1, 1, 1, 1.90)
         )
         
         
@@ -111,17 +113,29 @@ class CharacterCreatorApp(App):
         )
         create_button.bind(on_press=self.create_character)
         
+        self.character_xar = TextInput(
+            hint_text='',
+            size_hint_y = None,
+            font_size=18,
+             background_color= (10, 10, 11, 0.043956456256231122546223778933333896594568945618416584561),
+            height = 600,
+            foreground_color = (1, 1, 1, 1.90)
+        
+        )
+        
         # layout2.add_widget(self.rv)
         layout2.add_widget(self.character_name_input) 
         layout2.add_widget(self.class_button1)
         layout2.add_widget(self.class_button)
         layout2.add_widget(create_button)
+        self.layout.add_widget(self.character_xar)
+        self.layout.add_widget(layout2)
         
         #layout2.add_widget(self.character_xar)
         
-        #layout.add_widget(layout2)
+    
 
-        return layout2    
+        return self.layout    
 
     # def scroll_stopped(self, rv, value):
     #     print(f"Scrolled to {value}")
@@ -130,14 +144,16 @@ class CharacterCreatorApp(App):
         character_name = self.character_name_input.text
         character_class = self.class_button.text
         character_ras = self.class_button1.text
+        char_xar = self.character_xar.text
         self.root.remove_widget(self.character_name_input)
         self.root.remove_widget(self.class_button1)
         self.root.remove_widget(self.class_button)
-        if character_name and character_class != 'Выберите класс':
+        if character_name and character_class and character_ras!= 'Выберите класс':
             print(f"Персонаж {character_name} создан! Класс: {character_class}! Раса:{character_ras}!")
             char = Charecter(name = character_name, clas = character_class.lower(), race=character_ras.lower())
             char.generate()
             fw = FileWorker(char)
             fw.write_to_file()
+            self.character_xar.text = char.__str__()
         else:
             print("Введите имя персонажа и выберите класс.")

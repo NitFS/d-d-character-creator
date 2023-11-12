@@ -21,11 +21,29 @@ class Charecter():
          полурослик = dict(addscor = [0,2,0,0,0,0])
          )
     def __str__(self):
-        return (f'Имя: {self.name}, '
-                f'Раса:{self.race}, '
-                f'Класс: {self.clas},'
-                f'ХП: {self.mhp},'
-                f'Навыки: {self.skil}')
+        return (f'Имя: {self.name}\n '
+                f'Раса:{self.race}\n '
+                f'Класс: {self.clas}\n'
+                f'ХП: {self.mhp}\n'
+                'Навыки:\n'
+                f'атлетика: {self.skil[0]}\n'
+                f'акробатика: {self.skil[1]}\n'
+                f'ловкость рук: {self.skil[2]}\n'
+                f'скрытность: {self.skil[3]}\n'
+                f'анализ: {self.skil[4]}\n'
+                f'история: {self.skil[5]}\n'
+                f'магия: {self.skil[6]}\n'
+                f'природа: {self.skil[7]}\n'
+                f'религия: {self.skil[8]}\n'
+                f'восприятие: {self.skil[9]}\n'
+                f'выживание: {self.skil[10]}\n'
+                f'медицина: {self.skil[11]}\n'
+                f'проницательность: {self.skil[12]}\n'
+                f'уход за животными: {self.skil[13]}\n'
+                f'выступление: {self.skil[14]}\n'
+                f'запугивание: {self.skil[15]}\n'
+                f'обман: {self.skil[16]}\n'
+                f'убеждение: {self.skil[17]}')
 #генерит основные характеристики
     def mainscorreset(self):
         for i in range(6):
