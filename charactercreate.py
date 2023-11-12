@@ -114,6 +114,7 @@ class CharacterCreatorApp(App):
         create_button.bind(on_press=self.create_character)
         
         self.character_xar = TextInput(
+            readonly =  True,
             hint_text='',
             size_hint_y = None,
             font_size=18,
